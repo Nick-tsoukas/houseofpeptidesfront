@@ -1,0 +1,21 @@
+{
+  "name": "houseofpeptides-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Strapi v4 backend for House of Peptides",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.24.0",
+    "@strapi/plugin-users-permissions": "4.24.0",
+    "better-sqlite3": "9.4.3"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  }
+}

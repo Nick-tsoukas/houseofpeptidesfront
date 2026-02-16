@@ -1,52 +1,63 @@
 <template>
-  <div class="group bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-primary-500/50 transition-all duration-300">
+  <div class="group relative bg-gradient-to-br from-dark-900 to-dark-950 rounded-2xl overflow-hidden border border-white/5 hover:border-primary-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary-500/10">
     <!-- Gradient Placeholder Image -->
     <div class="relative aspect-square overflow-hidden">
       <div 
-        class="absolute inset-0 bg-gradient-to-br transition-transform duration-500 group-hover:scale-105"
+        class="absolute inset-0 transition-all duration-700 group-hover:scale-110"
         :style="{ background: gradientStyle }"
       ></div>
+      <!-- Overlay on hover -->
+      <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-60"></div>
       <!-- Badge -->
-      <div class="absolute top-3 left-3">
-        <span class="px-2 py-1 bg-primary-500/90 text-white text-xs font-medium rounded">
+      <div class="absolute top-4 left-4">
+        <span class="px-3 py-1.5 bg-gradient-to-r from-primary-500/90 to-emerald-500/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm shadow-lg">
           {{ product.attributes.badgeText || 'Research Use Only' }}
         </span>
+      </div>
+      <!-- Quick View Button -->
+      <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <NuxtLink
+          :to="`/product/${product.attributes.slug}`"
+          class="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-medium rounded-xl border border-white/20 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0"
+        >
+          View Details
+        </NuxtLink>
       </div>
     </div>
 
     <!-- Content -->
-    <div class="p-4">
-      <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-primary-400 transition-colors">
+    <div class="p-6">
+      <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-primary-300 transition-colors">
         {{ product.attributes.name }}
       </h3>
-      <p class="text-dark-400 text-sm mb-3 line-clamp-2">
+      <p class="text-dark-400 text-sm mb-4 line-clamp-2 leading-relaxed">
         {{ product.attributes.shortDescription }}
       </p>
 
-      <!-- Price Range -->
-      <div class="flex items-center justify-between mb-4">
-        <span class="text-primary-400 font-semibold">
+      <!-- Price & Variants -->
+      <div class="flex items-center justify-between mb-5">
+        <span class="text-lg font-bold bg-gradient-to-r from-primary-400 to-emerald-400 bg-clip-text text-transparent">
           {{ priceRange }}
         </span>
-        <span class="text-dark-500 text-xs">
+        <span class="text-dark-500 text-xs px-2 py-1 rounded-full bg-dark-800">
           {{ variantCount }} variant{{ variantCount !== 1 ? 's' : '' }}
         </span>
       </div>
 
       <!-- Actions -->
-      <div class="flex gap-2">
+      <div class="flex gap-3">
         <NuxtLink
           :to="`/product/${product.attributes.slug}`"
-          class="flex-1 px-4 py-2 bg-dark-700 hover:bg-dark-600 text-white text-sm font-medium rounded-lg text-center transition-colors"
+          class="flex-1 px-4 py-3 bg-white/5 hover:bg-white/10 text-white text-sm font-medium rounded-xl text-center transition-all duration-300 border border-white/5 hover:border-white/10"
         >
-          View Details
+          Details
         </NuxtLink>
         <button
           v-if="hasActiveVariants"
           @click="handleQuickAdd"
-          class="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium rounded-lg transition-colors"
+          class="flex-1 px-4 py-3 bg-gradient-to-r from-primary-500 to-emerald-500 hover:from-primary-600 hover:to-emerald-600 text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30"
         >
-          Add
+          Quick Add
         </button>
       </div>
     </div>

@@ -1,7 +1,9 @@
 <template>
   <div>
     <HeroSection />
-    <ProductGrid :products="products" :loading="pending" />
+    <CategorySection />
+    <IntroSection />
+    <ProductGrid id="products" :products="products" :loading="pending" />
   </div>
 </template>
 
